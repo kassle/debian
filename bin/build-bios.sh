@@ -33,4 +33,4 @@ mmdebstrap \
     $VERSION $OUTPUT
 
 gzip -9 $OUTPUT
-mv $RESULT ~/htdocs/files/
+# mv $RESULT ~/htdocs/files/
