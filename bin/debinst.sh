@@ -3,15 +3,22 @@
 DESTDEV=$1
 NEWUSER=$2
 MCHNAME=$3
+EFIBOOT=$4
 
 if [ -z ${DESTDEV} ] || [ -z ${NEWUSER} ] || [ -z ${MCHNAME} ]; then
     echo "usage:"
-    echo "    $0 [target-dev] [username] [machine-name]"
+    echo "    $0 [target-dev] [username] [machine-name] [efi-boot-dev]"
     echo ""
     echo "example:"
     echo "    $0 /dev/sda1 batman gotham"
+    echo "    $0 /dev/sda2 batman gotham /dev/sda1"
     echo ""
 
+    exit 1
+fi
+
+if [ -d "/sys/firmware/efi" ] && [ -z ${EFIBOOT} ]; then
+    echo "efi env detected. but no efi boot dev"
     exit 1
 fi
 
@@ -38,6 +45,13 @@ tar xf $DEBFILE --directory $DESTDIR
 mount --bind /dev $DESTDIR/dev
 mount --bind /proc $DESTDIR/proc
 mount --bind /sys $DESTDIR/sys
+
+if [ -d "/sys/firmware/efi" ]; then
+    mkdir -p $DESTDIR/boot/efi
+    mount $EFIBOOT $DESTDIR/boot/efi
+    mount -t efivarfs efivarfs $DESTDIR/sys/firmware/efi/efivars
+fi
+
 echo "    - configure system"
 echo "127.0.1.1 $MCHNAME" >> $DESTDIR/etc/hosts
 echo "$MCHNAME" > $DESTDIR/etc/hostname
@@ -64,6 +78,20 @@ else
     chroot $DESTDIR /usr/sbin/grub-install $BOOTDEV
 fi
 chroot $DESTDIR /usr/sbin/update-grub
+
+if [ -d "/sys/firmware/efi" ]; then
+    DISKUID=`blkid $EFIBOOT | awk -F\" '{ print $8 }'`
+    echo "UUID=$DISKUID /   vfat    umask=0077    0   0" >> $DESTDIR/etc/fstab
+
+    ## virtualbox
+    echo "\EFI\BOOT\grubx64.efi" > $DESTDIR/boot/efi/startup.nsh
+    ## mac 
+    mkdir -p $DESTDIR/boot/efi/EFI/BOOT
+    cp $DESTDIR/boot/efi/EFI/debian/grubx64.efi $DESTDIR/boot/efi/EFI/BOOT/BOOTX64.EFI
+
+    umount $DESTDIR/boot/efi
+    umount $DESTDIR/sys/firmware/efi/efivars
+fi
 
 chroot $DESTDIR /usr/sbin/adduser $NEWUSER
 chroot $DESTDIR /usr/sbin/adduser $NEWUSER sudo
