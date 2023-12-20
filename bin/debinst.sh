@@ -81,7 +81,7 @@ chroot $DESTDIR /usr/sbin/update-grub
 
 if [ -d "/sys/firmware/efi" ]; then
     DISKUID=`blkid $EFIBOOT | awk -F\" '{ print $8 }'`
-    echo "UUID=$DISKUID /   vfat    umask=0077    0   0" >> $DESTDIR/etc/fstab
+    echo "UUID=$DISKUID /boot/efi   vfat    umask=0077    0   0" >> $DESTDIR/etc/fstab
 
     ## virtualbox
     echo "\EFI\BOOT\grubx64.efi" > $DESTDIR/boot/efi/startup.nsh
@@ -96,7 +96,9 @@ fi
 chroot $DESTDIR /usr/sbin/adduser $NEWUSER
 chroot $DESTDIR /usr/sbin/adduser $NEWUSER sudo
 
-chroot $DESTDIR nano /etc/network/interfaces.d/eth0
+if [ -d "/etc/network/interfaces.d" ]; then
+    chroot $DESTDIR nano /etc/network/interfaces.d/eth0
+fi
 
 echo "    - clean-up"
 umount $DESTDIR/dev
