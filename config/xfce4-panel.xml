@@ -61,7 +61,7 @@
       <property name="enable-keyboard-shortcuts" type="bool" value="true"/>
     </property>
     <property name="plugin-12" type="string" value="clock">
-      <property name="mode" type="uint" value="0"/>
+      <property name="mode" type="uint" value="4"/>
       <property name="show-military" type="bool" value="true"/>
       <property name="show-seconds" type="bool" value="false"/>
     </property>

@@ -23,7 +23,7 @@ mmdebstrap \
     --dpkgopt='path-include=/usr/share/doc/*/changelog.Debian.*' \
     --dpkgopt='path-exclude=/usr/share/{doc,info,man,omf,help,gnome/help}/*' \
     --aptopt='Acquire::Languages "none"' \
-    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,network-manager-gnome,xfwm4,xfdesktop4,xfce4-session,xfce4-panel,thunar,desktop-base,tango-icon-theme,xfce4-terminal,xfce4-power-manager-plugins,xfce4-pulseaudio-plugin,pulseaudio,xserver-xorg-core,xserver-xorg-input-libinput,xserver-xorg-video-vesa,lightdm,lightdm-gtk-greeter,light-locker,greybird-gtk-theme,fonts-firacode,pavucontrol,thunar-volman,gvfs,eject,thermald \
+    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,network-manager-gnome,xfwm4,xfdesktop4,xfce4-session,xfce4-panel,xfce4-notifyd,thunar,desktop-base,tango-icon-theme,xfce4-terminal,xfce4-power-manager-plugins,xfce4-pulseaudio-plugin,pulseaudio,xserver-xorg-core,xserver-xorg-input-libinput,xserver-xorg-video-vesa,lightdm,lightdm-gtk-greeter,light-locker,greybird-gtk-theme,fonts-firacode,pavucontrol,thunar-volman,gvfs,gvfs-backends,eject,thermald \
     --customize-hook=$SCRIPTDIR/setup_apt.sh \
     --customize-hook=$SCRIPTDIR/setup_locale.sh \
     --customize-hook=$SCRIPTDIR/setup_nano.sh \
