@@ -1,0 +1,1 @@
+deb [ signed-by=/usr/share/keyrings/codium-keyring.gpg ] https://download.vscodium.com/debs vscodium main

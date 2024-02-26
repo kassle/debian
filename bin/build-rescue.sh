@@ -1,6 +1,6 @@
 SCRIPTDIR="/home/kassle/project/debian/scripts"
 VERSION="bookworm"
-OUTPUT="debian_xfce-$VERSION.tar"
+OUTPUT="debian_rescue-$VERSION.tar"
 RESULT="$OUTPUT.gz"
 
 if [ -f "$OUTPUT" ]; then
@@ -23,13 +23,14 @@ mmdebstrap \
     --dpkgopt='path-include=/usr/share/doc/*/changelog.Debian.*' \
     --dpkgopt='path-exclude=/usr/share/{doc,info,man,omf,help,gnome/help}/*' \
     --aptopt='Acquire::Languages "none"' \
-    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,network-manager-gnome,xfwm4,xfdesktop4,xfce4-session,xfce4-panel,xfce4-notifyd,thunar,desktop-base,tango-icon-theme,xfce4-terminal,xfce4-power-manager-plugins,pkexec,xfce4-pulseaudio-plugin,pulseaudio,xserver-xorg-core,xserver-xorg-input-libinput,xdg-utils,at-spi2-core,xserver-xorg-video-vesa,lightdm,lightdm-gtk-greeter,light-locker,greybird-gtk-theme,fonts-firacode,pavucontrol,thunar-volman,gvfs,gvfs-backends,eject,thermald \
+    --components="main contrib non-free non-free-firmware" \
+    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,tmux,isc-dhcp-client,inetutils-ping,inetutils-traceroute,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,openssh-server,openssh-client,network-manager,wpasupplicant,wireless-regdb,firmware-linux,iucode-tool,intel-microcode,amd64-microcode,firmware-iwlwifi,e2fsprogs,mdadm,dosfstools,fdisk,ntfs-3g,curl,ca-certificates \
     --customize-hook=$SCRIPTDIR/setup_apt.sh \
     --customize-hook=$SCRIPTDIR/setup_locale.sh \
     --customize-hook=$SCRIPTDIR/setup_nano.sh \
     --customize-hook=$SCRIPTDIR/setup_grub.sh \
-    --customize-hook=$SCRIPTDIR/setup_xfce4.sh \
-    --customize-hook=$SCRIPTDIR/setup_lightdm.sh \
+    --customize-hook=$SCRIPTDIR/setup_tmux.sh \
+    --customize-hook=$SCRIPTDIR/setup_sshd.sh \
     $VERSION $OUTPUT
 
 gzip -9 $OUTPUT
