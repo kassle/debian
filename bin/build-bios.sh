@@ -23,7 +23,7 @@ mmdebstrap \
     --dpkgopt='path-include=/usr/share/doc/*/changelog.Debian.*' \
     --dpkgopt='path-exclude=/usr/share/{doc,info,man,omf,help,gnome/help}/*' \
     --aptopt='Acquire::Languages "none"' \
-    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,tmux,ifupdown2,isc-dhcp-client,inetutils-ping,inetutils-traceroute,linux-image-amd64,grub-pc,systemd-timesyncd,dbus-user-session,openssh-server \
+    --include=whiptail,tzdata,nano,systemd-sysv,acpi-support-base,sudo,tmux,ifupdown2,isc-dhcp-client,inetutils-ping,inetutils-traceroute,linux-image-amd64,grub-pc,systemd-timesyncd,dbus-user-session,openssh-server \
     --customize-hook=$SCRIPTDIR/setup_apt.sh \
     --customize-hook=$SCRIPTDIR/setup_locale.sh \
     --customize-hook=$SCRIPTDIR/setup_nano.sh \
