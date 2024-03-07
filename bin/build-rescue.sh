@@ -24,7 +24,7 @@ mmdebstrap \
     --dpkgopt='path-exclude=/usr/share/{doc,info,man,omf,help,gnome/help}/*' \
     --aptopt='Acquire::Languages "none"' \
     --components="main contrib non-free non-free-firmware" \
-    --include=whiptail,tzdata,nano,systemd-sysv,rsyslog,logrotate,acpi-support-base,sudo,tmux,isc-dhcp-client,inetutils-ping,inetutils-traceroute,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,openssh-server,openssh-client,network-manager,wpasupplicant,wireless-regdb,firmware-linux,iucode-tool,intel-microcode,amd64-microcode,firmware-iwlwifi,e2fsprogs,mdadm,dosfstools,fdisk,ntfs-3g,curl,ca-certificates \
+    --include=whiptail,tzdata,nano,systemd-sysv,acpi-support-base,sudo,tmux,isc-dhcp-client,inetutils-ping,inetutils-traceroute,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,openssh-server,openssh-client,network-manager,wpasupplicant,wireless-regdb,firmware-linux,iucode-tool,intel-microcode,amd64-microcode,firmware-iwlwifi,e2fsprogs,mdadm,dosfstools,fdisk,ntfs-3g,curl,ca-certificates \
     --customize-hook=$SCRIPTDIR/setup_apt.sh \
     --customize-hook=$SCRIPTDIR/setup_locale.sh \
     --customize-hook=$SCRIPTDIR/setup_nano.sh \
