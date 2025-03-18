@@ -1,6 +1,6 @@
 SCRIPTDIR="/home/kassle/project/debian/scripts"
 VERSION="bookworm"
-OUTPUT="debian_efi-$VERSION.tar"
+OUTPUT="debian_$VERSION-efi.tar"
 RESULT="$OUTPUT.gz"
 
 if [ -f "$OUTPUT" ]; then

@@ -1,6 +1,6 @@
 SCRIPTDIR="/home/kassle/project/debian/scripts"
 VERSION="bookworm"
-OUTPUT="debian_xfce-$VERSION.tar"
+OUTPUT="debian_$VERSION-xfce.tar"
 RESULT="$OUTPUT.gz"
 
 if [ -f "$OUTPUT" ]; then
@@ -30,6 +30,7 @@ mmdebstrap \
     --customize-hook=$SCRIPTDIR/setup_grub.sh \
     --customize-hook=$SCRIPTDIR/setup_xfce4.sh \
     --customize-hook=$SCRIPTDIR/setup_lightdm.sh \
+    --customize-hook=$SCRIPTDIR/setup_modules.sh \
     $VERSION $OUTPUT
 
 gzip -9 $OUTPUT
