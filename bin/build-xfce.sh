@@ -1,6 +1,6 @@
 SCRIPTDIR="/home/kassle/project/debian/scripts"
-VERSION="bookworm"
-OUTPUT="debian_$VERSION-xfce.tar"
+VERSION="trixie"
+OUTPUT="debian_testing-xfce.tar"
 RESULT="$OUTPUT.gz"
 
 if [ -f "$OUTPUT" ]; then
@@ -25,6 +25,7 @@ mmdebstrap \
     --aptopt='Acquire::Languages "none"' \
     --include=whiptail,tzdata,nano,systemd-sysv,acpi-support-base,sudo,linux-image-amd64,grub-efi,systemd-timesyncd,dbus-user-session,network-manager-gnome,xfwm4,xfdesktop4,xfce4-session,xfce4-panel,xfce4-notifyd,thunar,desktop-base,tango-icon-theme,xfce4-terminal,xfce4-power-manager-plugins,pkexec,xfce4-pulseaudio-plugin,pulseaudio,xserver-xorg-core,xserver-xorg-input-libinput,xdg-utils,at-spi2-core,xserver-xorg-video-vesa,lightdm,lightdm-gtk-greeter,light-locker,greybird-gtk-theme,pavucontrol,thunar-volman,gvfs,gvfs-backends,eject,extrepo \
     --customize-hook=$SCRIPTDIR/setup_apt.sh \
+    --customize-hook=$SCRIPTDIR/setup_apt_testing.sh \
     --customize-hook=$SCRIPTDIR/setup_locale.sh \
     --customize-hook=$SCRIPTDIR/setup_nano.sh \
     --customize-hook=$SCRIPTDIR/setup_grub.sh \
