@@ -1,6 +1,7 @@
 SCRIPTDIR="/home/kassle/project/debian/scripts"
-VERSION="trixie"
-OUTPUT="debian_testing-xfce.tar"
+VERSION="testing"
+TIMESTAMP=`date +%Y%m%d`
+OUTPUT="debian_xfce-$TIMESTAMP.tar"
 RESULT="$OUTPUT.gz"
 
 if [ -f "$OUTPUT" ]; then
@@ -14,6 +15,7 @@ fi
 mmdebstrap \
     --variant=apt \
     --format=tar \
+    --mode=sudo \
     --architectures=amd64 \
     --dpkgopt='path-exclude=/usr/share/man/*' \
     --dpkgopt='path-exclude=/usr/share/locale/*' \
