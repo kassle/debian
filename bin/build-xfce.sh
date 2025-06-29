@@ -1,8 +1,9 @@
-SCRIPTDIR="/home/kassle/project/debian/scripts"
+DEBIAN_WORKDIR=`pwd`
+SCRIPTDIR="$DEBIAN_WORKDIR/scripts"
 VERSION="testing"
-TIMESTAMP=`date +%Y%m%d`
-OUTPUT="debian_xfce-$TIMESTAMP.tar"
-RESULT="$OUTPUT.gz"
+OUTPUT="debian_xfce.tar"
+
+export DEBIAN_WORKDIR
 
 if [ -f "$OUTPUT" ]; then
     rm $OUTPUT
@@ -34,7 +35,5 @@ mmdebstrap \
     --customize-hook=$SCRIPTDIR/setup_xfce4.sh \
     --customize-hook=$SCRIPTDIR/setup_lightdm.sh \
     --customize-hook=$SCRIPTDIR/setup_modules.sh \
+    --customize-hook=$SCRIPTDIR/get_debian_version.sh \
     $VERSION $OUTPUT
-
-gzip -9 $OUTPUT
-# mv $RESULT ~/htdocs/files/
