@@ -12,6 +12,7 @@ sudo apt install --no-install-recommends fakechroot fakeroot mmdebstrap
 ### For desktop with XFCE interface, only for (u)efi based system x64
 ./bin/build-xfce.sh
 
+### compress the archive
 gzip -9 debian*.tar
 
 ## Prebuilt
@@ -21,6 +22,7 @@ You can download prebuilt archive on https://files.kry.ovh/debian/
 
 - rename the archive into debinst.tar.gz
 - run debian installer, with the following parameters
+
 ```
 ./debinst.sh [target-dev] [username] [machine-name] [efi-boot-dev]
 
@@ -44,7 +46,7 @@ example:
 - tmux
 - traceroute
 
-### XFCE x6
+### XFCE x64
 - based on debian testing
 - grub
 - lightdm
