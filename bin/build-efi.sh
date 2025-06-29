@@ -1,7 +1,9 @@
-SCRIPTDIR="/home/kassle/project/debian/scripts"
+DEBIAN_WORKDIR=`pwd`
+SCRIPTDIR="$DEBIAN_WORKDIR/scripts"
 VERSION="bookworm"
-OUTPUT="debian_$VERSION-efi.tar"
-RESULT="$OUTPUT.gz"
+OUTPUT="debian_efi.tar"
+
+export DEBIAN_WORKDIR
 
 if [ -f "$OUTPUT" ]; then
     rm $OUTPUT
@@ -31,7 +33,5 @@ mmdebstrap \
     --customize-hook=$SCRIPTDIR/setup_tmux.sh \
     --customize-hook=$SCRIPTDIR/setup_sshd.sh \
     --customize-hook=$SCRIPTDIR/setup_network.sh \
+    --customize-hook=$SCRIPTDIR/get_debian_version.sh \
     $VERSION $OUTPUT
-
-gzip -9 $OUTPUT
-# mv $RESULT ~/htdocs/files/
