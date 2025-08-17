@@ -16,6 +16,7 @@ fi
 mmdebstrap \
     --variant=apt \
     --format=tar \
+    --mode=sudo \
     --architectures=amd64 \
     --dpkgopt='path-exclude=/usr/share/man/*' \
     --dpkgopt='path-exclude=/usr/share/locale/*' \
