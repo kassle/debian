@@ -1,6 +1,6 @@
 DEBIAN_WORKDIR=`pwd`
 SCRIPTDIR="$DEBIAN_WORKDIR/scripts"
-VERSION="bookworm"
+VERSION="stable"
 OUTPUT="debian_bios.tar"
 
 export DEBIAN_WORKDIR
